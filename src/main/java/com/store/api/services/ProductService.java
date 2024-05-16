@@ -28,8 +28,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addNewProduct(Product product) {
-        productRepository.save(product);
+    public Product addNewProduct(Product product) {
+        return productRepository.save(product);
     }
 
     public void deleteProduct(Long id) {
@@ -40,7 +40,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public void updateProduct(Long productId,
+    public Product updateProduct(Long productId,
                               String name,
                               ProductStatus status,
                               String description,
@@ -63,6 +63,6 @@ public class ProductService {
             product.setPrice(price);
         }
 
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 }
