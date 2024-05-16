@@ -17,7 +17,7 @@ public class Product {
     private String name;
     private ProductStatus status;
     private String description;
-    private double price;
+    private Double price;
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -28,7 +28,7 @@ public class Product {
     public Product(String name,
                    ProductStatus status,
                    String description,
-                   double price) {
+                   Double price) {
         this.name = name;
         this.status = status;
         this.description = description;
@@ -67,11 +67,11 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
