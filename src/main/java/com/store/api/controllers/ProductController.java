@@ -4,6 +4,7 @@ import com.store.api.enums.ProductStatus;
 import com.store.api.models.Product;
 import com.store.api.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,23 +31,25 @@ public class ProductController {
     }
 
     @PostMapping
-    public void createProduct(@RequestBody Product product) {
-        productService.addNewProduct(product);
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product) {
+        return productService.addNewProduct(product);
     }
 
     @DeleteMapping(path = "{productId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable("productId") Long id) {
         productService.deleteProduct(id);
     }
 
     @PutMapping(path = "{productId}")
-    public void updateProduct(
+    public Product updateProduct(
             @PathVariable("productId") Long productId,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) ProductStatus status,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) Double price) {
-        productService.updateProduct(productId, name, status, description, price);
+        return productService.updateProduct(productId, name, status, description, price);
     }
 
 }
