@@ -19,6 +19,11 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping(path = "{productId}")
+    public Product getProductDetails(@PathVariable("productId") Long id) {
+        return productService.getProduct(id);
+    }
+
     @GetMapping
     public List<Product> getProducts() {
         return productService.getProducts();
