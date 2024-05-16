@@ -19,6 +19,11 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public Product getProduct(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " does not exist."));
+    }
+
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
