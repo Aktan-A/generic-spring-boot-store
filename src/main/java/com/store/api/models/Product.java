@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.store.api.enums.ProductStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "products")
@@ -17,6 +18,7 @@ public class Product {
     private ProductStatus status;
     private String description;
     private double price;
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     public Product() {
