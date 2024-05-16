@@ -1,0 +1,16 @@
+Testing tools:
+- Intellij IDEA to start the server
+- Postman to send requests
+- Tableplus to view the database
+
+Testing steps:
+1. Started the api server
+2. Sent a GET request to localhost:8080/api/v1/products to confirm that there are no products, it returned an empty list
+3. Sent 2 POST requests to localhost:8080/api/v1/products to create two products (ids 1 and 2)
+4. Sent a GET request to localhost:8080/api/v1/products and checked the database to ensure that the products were created and all of them were returned in the response
+5. Sent a GET request to localhost:8080/api/v1/products/1 to view the details of the first created product
+6. Sent a GET request to localhost:8080/api/v1/products/99 to confirm the exception was correctly processed and an appropriate message and status code was returned
+7. Sent a PUT request to localhost:8080/api/v1/products/1?name=Toothbrush&status=INACTIVE&description=New description&price=2.22, to update all fields of the product and checked the database to make sure that the changes were applied
+8.  Sent a PUT request to localhost:8080/api/v1/products/99?name=Toothbrush&status=INACTIVE&description=New description&price=2.22, to confirm the exception was correctly processed and an appropriate message and status code was returned
+9. Sent a DELETE request localhost:8080/api/v1/products/1 and confirmed that it returned a 204 status code and checked the database
+10. Sent a GET request to localhost:8080/api/v1/products to confirm that only the second product was returned
