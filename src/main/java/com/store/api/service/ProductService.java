@@ -1,13 +1,14 @@
-package com.store.api.services;
+package com.store.api.service;
 
 import com.store.api.enums.ProductStatus;
-import com.store.api.exceptions.ResourceNotFoundException;
-import com.store.api.models.Product;
-import com.store.api.repositories.ProductRepository;
+import com.store.api.exception.ResourceNotFoundException;
+import com.store.api.model.Product;
+import com.store.api.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
