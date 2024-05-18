@@ -1,7 +1,8 @@
 package com.store.api.service;
 
-import com.store.api.enums.ProductStatus;
+import com.store.api.dto.ProductDto;
 import com.store.api.exception.ResourceNotFoundException;
+import com.store.api.mapper.ProductMapper;
 import com.store.api.model.Product;
 import com.store.api.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -20,20 +22,25 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product getProduct(Long id) {
-        return productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " does not exist."));
+    public ProductDto getProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isEmpty()) {
+            throw new ResourceNotFoundException("Product with id " + id + " does not exist.");
+        }
+        return ProductMapper.toProductDto(product.get());
     }
 
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    public List<ProductDto> getProducts() {
+        List<Product> products = productRepository.findAll();
+        return products.stream().map(ProductMapper::toProductDto).collect(Collectors.toList());
     }
 
-    public Product addNewProduct(Product product) {
-        return productRepository.save(product);
+    public ProductDto addNewProduct(ProductDto productDto) {
+        Product product = ProductMapper.toProduct(productDto);
+        return ProductMapper.toProductDto(productRepository.save(product));
     }
 
-    public void deleteProduct(Long id) {
+    public void deleteProductById(Long id) {
         boolean exists = productRepository.existsById(id);
         if (!exists) {
             throw new ResourceNotFoundException("Product with id " + id + " does not exist.");
@@ -41,29 +48,18 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Product updateProduct(Long productId,
-                              String name,
-                              ProductStatus status,
-                              String description,
-                              Double price) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + productId + " does not exist."));
-        if (name != null && !name.isEmpty() && !name.equals(product.getName())) {
-            product.setName(name);
+    public ProductDto updateProductById(Long productId,
+                                        ProductDto productDto) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isEmpty()) {
+            throw new ResourceNotFoundException("Product with id " + productId + " does not exist.");
         }
+        Product productModel = product.get();
+        productModel.setName(productDto.getName());
+        productModel.setStatus(productDto.getStatus());
+        productModel.setDescription(productDto.getDescription());
+        productModel.setPrice(productDto.getPrice());
 
-        if (status != null) {
-            product.setStatus(status);
-        }
-
-        if (description != null && !description.equals(product.getDescription())) {
-            product.setDescription(description);
-        }
-
-        if (price != null) {
-            product.setPrice(price);
-        }
-
-        return productRepository.save(product);
+        return ProductMapper.toProductDto(productRepository.save(productModel));
     }
 }
