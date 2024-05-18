@@ -1,6 +1,7 @@
 package com.store.api.models;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.store.api.enums.ProductStatus;
 import jakarta.persistence.*;
@@ -21,9 +22,7 @@ public class Product {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Product() {
-
-    }
+    public Product() {}
 
     public Product(String name,
                    ProductStatus status,
@@ -93,5 +92,10 @@ public class Product {
                 ", price=" + price +
                 ", createdAt=" + createdAt +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, status, description, price, createdAt);
     }
 }
