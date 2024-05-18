@@ -4,6 +4,7 @@ import com.store.api.dto.ProductDto;
 import com.store.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,33 +20,32 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "{productId}")
-    public ProductDto getProductById(@PathVariable("productId") Long id) {
-        return productService.getProductById(id);
+    @GetMapping(path = "/{productId}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("productId") Long id) {
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @GetMapping
-    public List<ProductDto> getProducts() {
-        return productService.getProducts();
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        return ResponseEntity.ok(productService.getProducts());
     }
 
     @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public ProductDto createProduct(@RequestBody ProductDto productDto) {
-        return productService.addNewProduct(productDto);
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.addNewProduct(productDto));
     }
 
-    @DeleteMapping(path = "{productId}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable("productId") Long id) {
+    @DeleteMapping(path = "/{productId}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("productId") Long id) {
         productService.deleteProductById(id);
+        return ResponseEntity.ok("Товар успешно удалён.");
     }
 
-    @PutMapping(path = "{productId}")
-    public ProductDto updateProduct(
+    @PutMapping(path = "/{productId}")
+    public ResponseEntity<ProductDto> updateProduct(
             @PathVariable("productId") Long productId,
             @RequestBody ProductDto productDto) {
-        return productService.updateProductById(productId, productDto);
+        return ResponseEntity.ok(productService.updateProductById(productId, productDto));
     }
 
 }
