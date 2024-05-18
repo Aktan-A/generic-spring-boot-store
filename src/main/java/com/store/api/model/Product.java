@@ -15,11 +15,16 @@ public class Product {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private ProductStatus status;
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private Double price;
     @CreationTimestamp
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     public Product() {}
