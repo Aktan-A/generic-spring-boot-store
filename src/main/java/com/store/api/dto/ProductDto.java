@@ -1,38 +1,29 @@
-package com.store.api.models;
+package com.store.api.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.store.api.enums.ProductStatus;
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
 
-@Entity
-@Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+
+public class ProductDto {
     private Long id;
     private String name;
     private ProductStatus status;
     private String description;
     private Double price;
-    @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Product() {
+    public ProductDto() {}
 
-    }
-
-    public Product(String name,
-                   ProductStatus status,
-                   String description,
-                   Double price) {
+    public ProductDto(Long id, String name, ProductStatus status, String description, Double price,
+                      LocalDateTime createdAt) {
+        this.id = id;
         this.name = name;
         this.status = status;
         this.description = description;
         this.price = price;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -85,7 +76,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", status=" + status +
@@ -93,5 +84,10 @@ public class Product {
                 ", price=" + price +
                 ", createdAt=" + createdAt +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, status, description, price, createdAt);
     }
 }

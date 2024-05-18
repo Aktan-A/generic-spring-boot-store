@@ -1,0 +1,51 @@
+package com.store.api.controller;
+
+import com.store.api.dto.ProductDto;
+import com.store.api.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "api/v1/products")
+public class ProductController {
+
+    private final ProductService productService;
+
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping(path = "/{productId}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("productId") Long id) {
+        return ResponseEntity.ok(productService.getProductById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        return ResponseEntity.ok(productService.getProducts());
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.addNewProduct(productDto));
+    }
+
+    @DeleteMapping(path = "/{productId}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("productId") Long id) {
+        productService.deleteProductById(id);
+        return ResponseEntity.ok("Товар успешно удалён.");
+    }
+
+    @PutMapping(path = "/{productId}")
+    public ResponseEntity<ProductDto> updateProduct(
+            @PathVariable("productId") Long productId,
+            @RequestBody ProductDto productDto) {
+        return ResponseEntity.ok(productService.updateProductById(productId, productDto));
+    }
+
+}
