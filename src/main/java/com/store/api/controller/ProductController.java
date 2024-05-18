@@ -1,8 +1,8 @@
-package com.store.api.controllers;
+package com.store.api.controller;
 
 import com.store.api.enums.ProductStatus;
-import com.store.api.models.Product;
-import com.store.api.services.ProductService;
+import com.store.api.model.Product;
+import com.store.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +21,8 @@ public class ProductController {
     }
 
     @GetMapping(path = "{productId}")
-    public Product getProductDetails(@PathVariable("productId") Long id) {
-        return productService.getProduct(id);
+    public Product getProductById(@PathVariable("productId") Long id) {
+        return productService.getProductById(id);
     }
 
     @GetMapping

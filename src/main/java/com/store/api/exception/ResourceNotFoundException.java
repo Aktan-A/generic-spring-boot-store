@@ -1,4 +1,4 @@
-package com.store.api.exceptions;
+package com.store.api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
