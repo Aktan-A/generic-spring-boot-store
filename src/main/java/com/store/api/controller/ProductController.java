@@ -1,7 +1,6 @@
 package com.store.api.controller;
 
-import com.store.api.enums.ProductStatus;
-import com.store.api.model.Product;
+import com.store.api.dto.ProductDto;
 import com.store.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,35 +20,32 @@ public class ProductController {
     }
 
     @GetMapping(path = "{productId}")
-    public Product getProductById(@PathVariable("productId") Long id) {
+    public ProductDto getProductById(@PathVariable("productId") Long id) {
         return productService.getProductById(id);
     }
 
     @GetMapping
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         return productService.getProducts();
     }
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Product createProduct(@RequestBody Product product) {
-        return productService.addNewProduct(product);
+    public ProductDto createProduct(@RequestBody ProductDto productDto) {
+        return productService.addNewProduct(productDto);
     }
 
     @DeleteMapping(path = "{productId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable("productId") Long id) {
-        productService.deleteProduct(id);
+        productService.deleteProductById(id);
     }
 
     @PutMapping(path = "{productId}")
-    public Product updateProduct(
+    public ProductDto updateProduct(
             @PathVariable("productId") Long productId,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) ProductStatus status,
-            @RequestParam(required = false) String description,
-            @RequestParam(required = false) Double price) {
-        return productService.updateProduct(productId, name, status, description, price);
+            @RequestBody ProductDto productDto) {
+        return productService.updateProductById(productId, productDto);
     }
 
 }
