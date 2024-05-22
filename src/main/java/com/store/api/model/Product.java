@@ -1,6 +1,8 @@
 package com.store.api.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.store.api.enums.ProductStatus;
@@ -17,6 +19,7 @@ public class Product {
     private Long id;
     @Column(nullable = false)
     private String name;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ProductStatus status;
     @Column(nullable = false)
@@ -26,6 +29,9 @@ public class Product {
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "product")
+    List<OrderItem> orderItems = new ArrayList<>();
 
     public Product() {}
 
