@@ -1,6 +1,7 @@
 package com.store.api.service;
 
 import com.store.api.dto.ProductDto;
+import com.store.api.enums.ProductStatus;
 import com.store.api.exception.ResourceNotFoundException;
 import com.store.api.mapper.ProductMapper;
 import com.store.api.model.Product;
@@ -27,17 +28,18 @@ public class ProductService {
         if (product.isEmpty()) {
             throw new ResourceNotFoundException("Product with id " + id + " does not exist.");
         }
-        return ProductMapper.toProductDto(product.get());
+        return ProductMapper.convertEntityToDto(product.get());
     }
 
     public List<ProductDto> getProducts() {
         List<Product> products = productRepository.findAll();
-        return products.stream().map(ProductMapper::toProductDto).collect(Collectors.toList());
+        return products.stream().map(ProductMapper::convertEntityToDto).collect(Collectors.toList());
     }
 
-    public ProductDto addNewProduct(ProductDto productDto) {
-        Product product = ProductMapper.toProduct(productDto);
-        return ProductMapper.toProductDto(productRepository.save(product));
+    public ProductDto createProduct(ProductDto productDto) {
+        Product product = ProductMapper.convertDtoToEntity(productDto);
+        product.setStatus(ProductStatus.ACTIVE);
+        return ProductMapper.convertEntityToDto(productRepository.save(product));
     }
 
     public void deleteProductById(Long id) {
@@ -60,6 +62,6 @@ public class ProductService {
         productModel.setDescription(productDto.getDescription());
         productModel.setPrice(productDto.getPrice());
 
-        return ProductMapper.toProductDto(productRepository.save(productModel));
+        return ProductMapper.convertEntityToDto(productRepository.save(productModel));
     }
 }
