@@ -4,8 +4,8 @@ import com.store.api.dto.ProductDto;
 import com.store.api.model.Product;
 
 public class ProductMapper {
-    public static ProductDto toProductDto(Product product) {
-        ProductDto productDto =  new ProductDto();
+    public static ProductDto convertEntityToDto(Product product) {
+        ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setName(product.getName());
         productDto.setStatus(product.getStatus());
@@ -15,7 +15,7 @@ public class ProductMapper {
         return productDto;
     }
 
-    public static Product toProduct(ProductDto productDto) {
+    public static Product convertDtoToEntity(ProductDto productDto) {
         Product product = new Product();
         product.setId(productDto.getId());
         product.setName(productDto.getName());
