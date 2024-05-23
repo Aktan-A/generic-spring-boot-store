@@ -1,6 +1,7 @@
 package com.store.api.service;
 
 import com.store.api.dto.ProductDto;
+import com.store.api.enums.ProductStatus;
 import com.store.api.exception.ResourceNotFoundException;
 import com.store.api.mapper.ProductMapper;
 import com.store.api.model.Product;
@@ -35,8 +36,9 @@ public class ProductService {
         return products.stream().map(ProductMapper::convertEntityToDto).collect(Collectors.toList());
     }
 
-    public ProductDto addNewProduct(ProductDto productDto) {
+    public ProductDto createProduct(ProductDto productDto) {
         Product product = ProductMapper.convertDtoToEntity(productDto);
+        product.setStatus(ProductStatus.ACTIVE);
         return ProductMapper.convertEntityToDto(productRepository.save(product));
     }
 

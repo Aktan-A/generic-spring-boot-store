@@ -32,13 +32,13 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.addNewProduct(productDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDto));
     }
 
     @DeleteMapping(path = "/{productId}")
-    public ResponseEntity<String> deleteProduct(@PathVariable("productId") Long id) {
+    public ResponseEntity<String> deleteProductById(@PathVariable("productId") Long id) {
         productService.deleteProductById(id);
-        return ResponseEntity.ok("Товар успешно удалён.");
+        return ResponseEntity.ok("Product successfully deleted.");
     }
 
     @PutMapping(path = "/{productId}")

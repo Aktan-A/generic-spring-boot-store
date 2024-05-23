@@ -35,7 +35,7 @@ public class CustomerService {
                 .collect(Collectors.toList());
     }
 
-    public CustomerDto addNewCustomer(CustomerDto customerDto) {
+    public CustomerDto createCustomer(CustomerDto customerDto) {
         Customer customer = CustomerMapper.convertDtoToEntity(customerDto);
         return CustomerMapper.convertEntityToDto(customerRepository.save(customer));
     }

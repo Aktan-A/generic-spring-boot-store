@@ -33,10 +33,10 @@ public class OrderItemService {
         this.productRepository = productRepository;
     }
 
-    public OrderItemDto createOrderItem(long orderId, OrderItemDto orderItemDto) {
-        Optional<Order> order = orderRepository.findById(orderId);
+    public OrderItemDto createOrderItem(OrderItemDto orderItemDto) {
+        Optional<Order> order = orderRepository.findById(orderItemDto.getOrderId());
         if (order.isEmpty()) {
-            throw new ResourceNotFoundException("Order with id " + orderId + " does not exist.");
+            throw new ResourceNotFoundException("Order with id " + orderItemDto.getOrderId() + " does not exist.");
         }
 
         Optional<Product> product = productRepository.findById(orderItemDto.getProductId());

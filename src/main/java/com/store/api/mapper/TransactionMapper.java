@@ -9,6 +9,7 @@ public class TransactionMapper {
         TransactionDto transactionDto = new TransactionDto();
         transactionDto.setId(transaction.getId());
         transactionDto.setStatus(transaction.getStatus());
+        transactionDto.setOrderId(transaction.getOrder().getId());
         transactionDto.setTotalPrice(transaction.getTotalPrice());
         transactionDto.setCreatedAt(transaction.getCreatedAt());
         return transactionDto;

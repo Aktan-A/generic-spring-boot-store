@@ -9,6 +9,8 @@ public class OrderItemMapper {
         OrderItemDto orderItemDto = new OrderItemDto();
         orderItemDto.setId(orderItem.getId());
         orderItemDto.setQuantity(orderItem.getQuantity());
+        orderItemDto.setOrderId(orderItem.getOrder().getId());
+        orderItemDto.setProductId(orderItem.getProduct().getId());
         orderItemDto.setCreatedAt(orderItem.getCreatedAt());
         return orderItemDto;
     }

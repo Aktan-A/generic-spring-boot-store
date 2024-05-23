@@ -18,14 +18,16 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString(exclude = {"customer", "transaction", "orders"})
+@ToString(exclude = {"customer", "orderItems"})
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status = OrderStatus.CREATED;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -34,12 +36,11 @@ public class Order {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "transaction_id")
+    @OneToOne(mappedBy = "order")
     private Transaction transaction;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orders = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Order(OrderStatus status) {
         this.status = status;
