@@ -2,6 +2,10 @@ package com.store.api.model;
 
 import com.store.api.enums.TransactionStatus;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -9,6 +13,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "transactions")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(exclude = {"order"})
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,54 +33,9 @@ public class Transaction {
     @OneToOne(mappedBy = "transaction", optional = false)
     private Order order;
 
-
-    public Transaction() {}
-
     public Transaction(double totalPrice, TransactionStatus status) {
         this.totalPrice = totalPrice;
         this.status = status;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public TransactionStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TransactionStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Transaction{" +
-                "id=" + id +
-                ", totalPrice=" + totalPrice +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                '}';
     }
 
     @Override
