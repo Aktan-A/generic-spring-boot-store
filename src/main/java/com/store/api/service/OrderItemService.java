@@ -51,7 +51,7 @@ public class OrderItemService {
         return OrderItemMapper.convertEntityToDto(orderItemRepository.save(orderItem));
     }
 
-    public void deleteOrderItemById(long id) {
+    public void deleteOrderItemById(Long id) {
         boolean exists = orderItemRepository.existsById(id);
         if (!exists) {
             throw new ResourceNotFoundException("Order item with id " + id + " does not exist.");
@@ -59,7 +59,7 @@ public class OrderItemService {
         orderItemRepository.deleteById(id);
     }
 
-    public OrderItemDto updateOrderItemById(long id, OrderItemDto orderItemDto) {
+    public OrderItemDto updateOrderItemById(Long id, OrderItemDto orderItemDto) {
         Optional<OrderItem> orderItem = orderItemRepository.findById(id);
         if (orderItem.isEmpty()) {
             throw new ResourceNotFoundException("Product with id " + orderItemDto.getProductId() + " does not exist.");

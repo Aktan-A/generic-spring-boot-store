@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 public class OrderItemDto {
-    private long id;
+    private Long id;
     private int quantity;
-    private long orderId;
-    private long productId;
+    private Long orderId;
+    private Long productId;
     private LocalDateTime createdAt;
 
     public OrderItemDto(
             int quantity,
-            long orderId,
-            long productId
+            Long orderId,
+            Long productId
     ) {
         this.quantity = quantity;
         this.orderId = orderId;

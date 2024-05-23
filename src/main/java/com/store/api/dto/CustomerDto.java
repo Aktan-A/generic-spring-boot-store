@@ -11,14 +11,14 @@ import java.util.Objects;
 @ToString
 @EqualsAndHashCode
 public class CustomerDto {
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String address;
     private LocalDateTime createdAt;
 
     public CustomerDto(
-            long id,
+            Long id,
             String firstName,
             String lastName,
             String address,
