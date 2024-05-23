@@ -1,7 +1,6 @@
 package com.store.api.dto;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import com.store.api.enums.ProductStatus;
 import lombok.*;
