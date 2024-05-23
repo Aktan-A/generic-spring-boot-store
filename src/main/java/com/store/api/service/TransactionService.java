@@ -30,7 +30,7 @@ public class TransactionService {
         this.orderRepository = orderRepository;
     }
 
-    public TransactionDto getTransactionById(long id) {
+    public TransactionDto getTransactionById(Long id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
         if (transaction.isEmpty()) {
             throw new ResourceNotFoundException("Transaction with id " + id + " does not exist.");
@@ -57,7 +57,7 @@ public class TransactionService {
         return TransactionMapper.convertEntityToDto(transactionRepository.save(transaction));
     }
 
-    public void deleteTransactionById(long id) {
+    public void deleteTransactionById(Long id) {
         boolean exists = transactionRepository.existsById(id);
         if (!exists) {
             throw new ResourceNotFoundException("Transaction with id " + id + " does not exist.");
@@ -65,7 +65,7 @@ public class TransactionService {
         transactionRepository.deleteById(id);
     }
 
-    public TransactionDto updateTransactionById(long id, TransactionDto transactionDto) {
+    public TransactionDto updateTransactionById(Long id, TransactionDto transactionDto) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
         if (transaction.isEmpty()) {
             throw new ResourceNotFoundException("Transaction with id " + id + " does not exist.");

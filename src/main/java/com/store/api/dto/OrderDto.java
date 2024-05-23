@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 public class OrderDto {
-    private long id;
-    private long customerId;
+    private Long id;
+    private Long customerId;
     private OrderStatus status;
     private LocalDateTime createdAt;
 
     public OrderDto(
-            long id,
-            long customerId,
+            Long id,
+            Long customerId,
             OrderStatus status,
             LocalDateTime createdAt) {
         this.id = id;

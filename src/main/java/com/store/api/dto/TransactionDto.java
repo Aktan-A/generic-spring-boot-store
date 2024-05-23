@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 public class TransactionDto {
-    private long id;
+    private Long id;
     private double totalPrice;
-    private long orderId;
+    private Long orderId;
     private TransactionStatus status;
     private LocalDateTime createdAt;
 
     public TransactionDto(
-            long id,
+            Long id,
             double totalPrice,
-            long orderId,
+            Long orderId,
             TransactionStatus status,
             LocalDateTime createdAt) {
         this.id = id;

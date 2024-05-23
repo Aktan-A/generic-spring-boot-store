@@ -24,14 +24,14 @@ public class OrderItemController {
     }
 
     @DeleteMapping(path = "/{orderItemId}")
-    public ResponseEntity<String> deleteOrderItemById(@PathVariable("orderItemId") long id) {
+    public ResponseEntity<String> deleteOrderItemById(@PathVariable("orderItemId") Long id) {
         orderItemService.deleteOrderItemById(id);
         return ResponseEntity.ok("Order item successfully deleted.");
     }
 
     @PutMapping(path = "/{orderItemId}")
     public ResponseEntity<OrderItemDto> updateOrderItemById(
-            @PathVariable("orderItemId") long id,
+            @PathVariable("orderItemId") Long id,
             @RequestBody OrderItemDto orderItemDto) {
         return ResponseEntity.ok(orderItemService.updateOrderItemById(id, orderItemDto));
     }

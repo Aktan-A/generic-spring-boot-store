@@ -30,7 +30,7 @@ public class OrderService {
         this.customerRepository = customerRepository;
     }
 
-    public OrderDto getOrderById(long id) {
+    public OrderDto getOrderById(Long id) {
         Optional<Order> order = orderRepository.findById(id);
         if (order.isEmpty()) {
             throw new ResourceNotFoundException("Order with id " + id + " does not exist.");
@@ -56,7 +56,7 @@ public class OrderService {
         return OrderMapper.convertEntityToDto(orderRepository.save(order));
     }
 
-    public void deleteOrderById(long id) {
+    public void deleteOrderById(Long id) {
         boolean exists = orderRepository.existsById(id);
         if (!exists) {
             throw new ResourceNotFoundException("Order with id " + id + " does not exist.");
@@ -64,7 +64,7 @@ public class OrderService {
         orderRepository.deleteById(id);
     }
 
-    public OrderDto updateOrderById(long id, OrderDto orderDto) {
+    public OrderDto updateOrderById(Long id, OrderDto orderDto) {
         Optional<Order> order = orderRepository.findById(id);
         if (order.isEmpty()) {
             throw new ResourceNotFoundException("Order with id " + id + " does not exist.");

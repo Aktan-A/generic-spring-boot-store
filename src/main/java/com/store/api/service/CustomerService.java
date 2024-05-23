@@ -21,7 +21,7 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerDto getCustomerById(long id) {
+    public CustomerDto getCustomerById(Long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
             throw new ResourceNotFoundException("Customer with id " + id + " does not exist.");
@@ -40,7 +40,7 @@ public class CustomerService {
         return CustomerMapper.convertEntityToDto(customerRepository.save(customer));
     }
 
-    public void deleteCustomerById(long id) {
+    public void deleteCustomerById(Long id) {
         boolean exists = customerRepository.existsById(id);
         if (!exists) {
             throw new ResourceNotFoundException("Customer with id " + id + " does not exist.");
@@ -48,7 +48,7 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public CustomerDto updateCustomerById(long customerId, CustomerDto customerDto) {
+    public CustomerDto updateCustomerById(Long customerId, CustomerDto customerDto) {
         Optional<Customer> customer = customerRepository.findById(customerId);
         if (customer.isEmpty()) {
             throw new ResourceNotFoundException("Customer with id " + customerId + " does not exist.");
