@@ -25,15 +25,20 @@ public class Product {
             strategy = GenerationType.IDENTITY
     )
     private Long id;
+
     @Column(nullable = false)
     private String name;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ProductStatus status = ProductStatus.ACTIVE;
+
     @Column(nullable = false)
     private String description;
+
     @Column(nullable = false)
     private Double price;
+
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime createdAt;

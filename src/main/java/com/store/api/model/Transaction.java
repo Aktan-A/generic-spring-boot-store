@@ -21,16 +21,20 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "total_price", nullable = false)
     private double totalPrice;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private TransactionStatus status = TransactionStatus.CREATED;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "transaction", optional = false)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     public Transaction(double totalPrice, TransactionStatus status) {

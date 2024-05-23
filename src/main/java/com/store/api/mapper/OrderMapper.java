@@ -2,12 +2,12 @@ package com.store.api.mapper;
 
 import com.store.api.dto.OrderDto;
 import com.store.api.model.Order;
-import org.aspectj.weaver.ast.Or;
 
 public class OrderMapper {
     public static OrderDto convertEntityToDto(Order order) {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(order.getId());
+        orderDto.setCustomerId(order.getCustomer().getId());
         orderDto.setStatus(order.getStatus());
         orderDto.setCreatedAt(order.getCreatedAt());
         return orderDto;
