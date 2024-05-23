@@ -1,0 +1,10 @@
+Vulnerabilities
+
+Vulnerability #1: No authentication and authorization
+Due to there not being authentication the app, users are able to access data of other users and even create data as other users (e.g. create a transaction by passing another user's customer id).
+This can be resolved by implementing a login form which will return JWT access and refresh tokens.
+These tokens will then be sent in headers of every request which the server will use to verify the user's identity and return appropriate data (like only orders of that user).
+
+Vulnerability #2: Database credentials are stored insecurely in application.properties which gets uploaded to the git repository
+If these were production credentials, in the case of someone gaining access to the git repository, they would also receive credentials from the database putting users' data at risk.
+This can be prevented by passing credentials through environment variables and also separating the application.properties configs by environment (prod, stag, dev).
