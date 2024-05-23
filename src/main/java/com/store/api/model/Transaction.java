@@ -25,7 +25,7 @@ public class Transaction {
     private double totalPrice;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private TransactionStatus status;
+    private TransactionStatus status = TransactionStatus.CREATED;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

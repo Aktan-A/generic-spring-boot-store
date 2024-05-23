@@ -29,7 +29,7 @@ public class Product {
     private String name;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ProductStatus status;
+    private ProductStatus status = ProductStatus.ACTIVE;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)

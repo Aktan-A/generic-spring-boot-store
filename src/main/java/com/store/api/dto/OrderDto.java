@@ -13,11 +13,20 @@ import java.util.Objects;
 @EqualsAndHashCode
 public class OrderDto {
     private long id;
+    private long customerId;
+    private long transactionId;
     private OrderStatus status;
     private LocalDateTime createdAt;
 
-    public OrderDto(long id, OrderStatus status, LocalDateTime createdAt) {
+    public OrderDto(
+            long id,
+            long customerId,
+            long transactionId,
+            OrderStatus status,
+            LocalDateTime createdAt) {
         this.id = id;
+        this.customerId = customerId;
+        this.transactionId = transactionId;
         this.status = status;
         this.createdAt = createdAt;
     }
