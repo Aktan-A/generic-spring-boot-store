@@ -1,8 +1,8 @@
-# Customer Endpoints
+# User Endpoints
 
-### GET `/api/v1/customers/{customer_id}`
+### GET `/api/v1/users/{user_id}`
 
-- Description: Get customer details by id
+- Description: Get user details by id
 
 - Response 200
 
@@ -16,9 +16,9 @@
 }
 ```
 
-### GET `/api/v1/customers`
+### GET `/api/v1/users`
 
-- Description: Get all customers
+- Description: Get all users
 
 - Response 200
 
@@ -34,9 +34,9 @@
 ]
 ```
 
-### POST `/api/v1/customers`
+### POST `/api/v1/users`
 
-- Description: Create a customer
+- Description: Create a user
 
 - Request Body:
 ```json
@@ -59,9 +59,9 @@
 }
 ```
 
-### PUT `/api/v1/customers/{customer_id}`
+### PUT `/api/v1/users/{user_id}`
 
-- Description: Update a customer by id
+- Description: Update a user by id
 
 - Request Body:
 ```json
@@ -84,12 +84,12 @@
 }
 ```
 
-### DELETE `/api/v1/customers/{customer_id}`
+### DELETE `/api/v1/users/{user_id}`
 
-- Description: Delete a customer by id
+- Description: Delete a user by id
 
 - Response 200
 
 ```json
-Customer successfully deleted.
+User successfully deleted.
 ```

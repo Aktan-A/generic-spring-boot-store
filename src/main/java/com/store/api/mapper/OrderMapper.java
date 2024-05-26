@@ -7,7 +7,7 @@ public class OrderMapper {
     public static OrderDto convertEntityToDto(Order order) {
         OrderDto orderDto = new OrderDto();
         orderDto.setId(order.getId());
-        orderDto.setCustomerId(order.getCustomer().getId());
+        orderDto.setUserId(order.getUser().getId());
         orderDto.setStatus(order.getStatus());
         orderDto.setCreatedAt(order.getCreatedAt());
         return orderDto;

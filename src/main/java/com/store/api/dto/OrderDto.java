@@ -12,17 +12,17 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class OrderDto {
     private Long id;
-    private Long customerId;
+    private Long userId;
     private OrderStatus status;
     private LocalDateTime createdAt;
 
     public OrderDto(
             Long id,
-            Long customerId,
+            Long userId,
             OrderStatus status,
             LocalDateTime createdAt) {
         this.id = id;
-        this.customerId = customerId;
+        this.userId = userId;
         this.status = status;
         this.createdAt = createdAt;
     }

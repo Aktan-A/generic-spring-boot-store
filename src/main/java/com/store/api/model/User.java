@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString(exclude = {"orders"})
-public class Customer {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,12 +36,12 @@ public class Customer {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
-    public Customer (String firstName,
-                     String lastName,
-                     String address) {
+    public User(String firstName,
+                String lastName,
+                String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;

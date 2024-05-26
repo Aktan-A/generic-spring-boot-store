@@ -9,7 +9,7 @@
 ```json
 {
     "id": 1,
-    "customerId": 1,
+    "userId": 1,
     "status": "CREATED",
     "createdAt": "2024-05-23T16:59:30.363224"
 }
@@ -25,7 +25,7 @@
 [
     {
         "id": 1,
-        "customerId": 1,
+        "userId": 1,
         "status": "CREATED",
         "createdAt": "2024-05-23T16:59:30.363224"
     }
@@ -39,7 +39,7 @@
 - Request Body:
 ```json
 {
-    "customerId": 1
+    "userId": 1
 }
 ```
 
@@ -48,7 +48,7 @@
 ```json
 {
     "id": 1,
-    "customerId": 1,
+    "userId": 1,
     "status": "CREATED",
     "createdAt": "2024-05-23T16:59:30.363224"
 }
@@ -70,7 +70,7 @@
 ```json
 {
     "id": 1,
-    "customerId": 1,
+    "userId": 1,
     "status": "SHIPPED",
     "createdAt": "2024-05-23T16:59:30.363224"
 }
