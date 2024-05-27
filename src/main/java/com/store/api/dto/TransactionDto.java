@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -16,17 +17,4 @@ public class TransactionDto {
     private Long orderId;
     private TransactionStatus status;
     private LocalDateTime createdAt;
-
-    public TransactionDto(
-            Long id,
-            double totalPrice,
-            Long orderId,
-            TransactionStatus status,
-            LocalDateTime createdAt) {
-        this.id = id;
-        this.totalPrice = totalPrice;
-        this.orderId = orderId;
-        this.status = status;
-        this.createdAt = createdAt;
-    }
 }
