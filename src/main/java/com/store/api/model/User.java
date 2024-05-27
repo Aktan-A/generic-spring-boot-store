@@ -1,5 +1,6 @@
 package com.store.api.model;
 
+import com.store.api.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +14,25 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString(exclude = {"orders"})
-public class Customer {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -36,12 +47,18 @@ public class Customer {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
-    public Customer (String firstName,
-                     String lastName,
-                     String address) {
+    public User(String username,
+                String password,
+                UserRole role,
+                String firstName,
+                String lastName,
+                String address) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -49,6 +66,6 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, address, createdAt);
+        return Objects.hash(id, username, password, role, firstName, lastName, address, createdAt);
     }
 }

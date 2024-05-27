@@ -6,23 +6,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class OrderItemDto {
-    private long id;
+    private Long id;
     private int quantity;
-    private long orderId;
-    private long productId;
+    private Long orderId;
+    private Long productId;
     private LocalDateTime createdAt;
-
-    public OrderItemDto(
-            int quantity,
-            long orderId,
-            long productId
-    ) {
-        this.quantity = quantity;
-        this.orderId = orderId;
-        this.productId = productId;
-    }
 }

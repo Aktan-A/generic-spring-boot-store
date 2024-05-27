@@ -21,7 +21,7 @@ public class TransactionController {
     }
 
     @GetMapping(path = "/{transactionId}")
-    public ResponseEntity<TransactionDto> getTransactionById(@PathVariable("transactionId") long id) {
+    public ResponseEntity<TransactionDto> getTransactionById(@PathVariable("transactionId") Long id) {
         return ResponseEntity.ok(transactionService.getTransactionById(id));
     }
 
