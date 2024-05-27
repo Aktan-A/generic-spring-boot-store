@@ -1,5 +1,6 @@
 package com.store.api.model;
 
+import com.store.api.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserRole role;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -39,9 +50,15 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
-    public User(String firstName,
+    public User(String username,
+                String password,
+                UserRole role,
+                String firstName,
                 String lastName,
                 String address) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -49,6 +66,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, address, createdAt);
+        return Objects.hash(id, username, password, role, firstName, lastName, address, createdAt);
     }
 }

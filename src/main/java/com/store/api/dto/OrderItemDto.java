@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
@@ -15,14 +16,4 @@ public class OrderItemDto {
     private Long orderId;
     private Long productId;
     private LocalDateTime createdAt;
-
-    public OrderItemDto(
-            int quantity,
-            Long orderId,
-            Long productId
-    ) {
-        this.quantity = quantity;
-        this.orderId = orderId;
-        this.productId = productId;
-    }
 }
