@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 @Builder
 public class RegisterDto {
-    String username;
-    String password;
-    UserRole role;
-    String firstName;
-    String lastName;
-    String address;
+    private String username;
+    private String password;
+    private UserRole role;
+    private String firstName;
+    private String lastName;
+    private String address;
 }
