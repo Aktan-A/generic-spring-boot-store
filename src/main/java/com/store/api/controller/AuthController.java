@@ -28,11 +28,6 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    @GetMapping("/register")
-//    public String showRegistrationForm() {
-//        return "register";
-//    }
-
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody RegisterDto registerDto) {
         registerDto.setPassword(passwordEncoder.encode(registerDto.getPassword()));

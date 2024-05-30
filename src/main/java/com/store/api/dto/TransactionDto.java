@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 public class TransactionDto {
     private Long id;
     private double totalPrice;

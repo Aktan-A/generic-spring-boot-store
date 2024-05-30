@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 public class UserDto {
     private Long id;
     private String username;

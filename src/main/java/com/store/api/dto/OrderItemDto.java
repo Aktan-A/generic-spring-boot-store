@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 public class OrderItemDto {
     private Long id;
     private int quantity;

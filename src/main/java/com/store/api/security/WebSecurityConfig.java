@@ -10,8 +10,8 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,14 +36,14 @@ public class WebSecurityConfig {
                         .requestMatchers("/home", "/api/v1/auth/register").permitAll()
                         .requestMatchers("/admin/**").hasRole(UserRole.ADMIN.toString())
                         .requestMatchers("/customer/**").hasAnyRole(UserRole.CUSTOMER.toString(), UserRole.ADMIN.toString())
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer -> {
                     httpSecurityFormLoginConfigurer
                             .permitAll()
                             .successHandler(new AuthenticationSuccessHandler());
-                });
-//                .logout((logout) -> logout.permitAll());
+                })
+                .logout(LogoutConfigurer::permitAll);
 
         return http.build();
     }

@@ -30,11 +30,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsers());
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userDto));
-    }
-
     @DeleteMapping(path = "/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable("userId") Long id) {
         userService.deleteUserById(id);
