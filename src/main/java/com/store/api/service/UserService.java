@@ -31,6 +31,14 @@ public class UserService {
         return UserMapper.convertEntityToDto(user.get());
     }
 
+    public UserDto getUserByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new ResourceNotFoundException("User with username " + username + " does not exist.");
+        }
+        return UserMapper.convertEntityToDto(user.get());
+    }
+
     public List<UserDto> getUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map(UserMapper::convertEntityToDto)
