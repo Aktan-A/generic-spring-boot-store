@@ -6,6 +6,11 @@ git clone git@github.com:Aktan-A/neobis-week3.git
 ./mvnw clean spring-boot:run
 ```
 
+## Running Tests
+```bash
+./mvnw test
+```
+
 ## Environment Variables
 | Key         | Description             |
 |-------------|-------------------------|

@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/home", "/api/v1/auth/register").permitAll()
                         .requestMatchers("/admin/**").hasRole(UserRole.ADMIN.toString())
                         .requestMatchers("/customer/**").hasAnyRole(UserRole.CUSTOMER.toString(), UserRole.ADMIN.toString())
-                        .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(httpSecurityFormLoginConfigurer -> {
                     httpSecurityFormLoginConfigurer
