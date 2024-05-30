@@ -3,6 +3,7 @@ package com.store.api.controller;
 import com.store.api.dto.OrderItemDto;
 import com.store.api.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class OrderItemController {
     @PostMapping
     public ResponseEntity<OrderItemDto> createOrderItem(
             @RequestBody OrderItemDto orderItemDto) {
-        return ResponseEntity.ok(orderItemService.createOrderItem(orderItemDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderItemService.createOrderItem(orderItemDto));
     }
 
     @DeleteMapping(path = "/{orderItemId}")

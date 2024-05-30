@@ -6,12 +6,10 @@ import com.store.api.enums.ProductStatus;
 import lombok.*;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
+@Builder
 public class ProductDto {
     private Long id;
     private String name;
