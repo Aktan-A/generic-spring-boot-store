@@ -9,29 +9,18 @@ import com.store.api.model.Product;
 import com.store.api.repository.OrderItemRepository;
 import com.store.api.repository.OrderRepository;
 import com.store.api.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OrderItemService {
 
     private final OrderItemRepository orderItemRepository;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
-
-    @Autowired
-    public OrderItemService(
-            OrderItemRepository orderItemRepository,
-            OrderRepository orderRepository,
-            ProductRepository productRepository
-    ) {
-        this.orderItemRepository = orderItemRepository;
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
-    }
 
     public OrderItemDto createOrderItem(OrderItemDto orderItemDto) {
         Optional<Order> order = orderRepository.findById(orderItemDto.getOrderId());
