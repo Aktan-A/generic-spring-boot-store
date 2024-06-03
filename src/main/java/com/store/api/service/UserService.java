@@ -1,8 +1,6 @@
 package com.store.api.service;
 
-import com.store.api.dto.RegisterDto;
 import com.store.api.dto.UserDto;
-import com.store.api.exception.ResourceExistsException;
 import com.store.api.exception.ResourceNotFoundException;
 import com.store.api.mapper.UserMapper;
 import com.store.api.model.User;
@@ -45,11 +43,6 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserDto createUser(UserDto userDto) {
-        User user = UserMapper.convertDtoToEntity(userDto);
-        return UserMapper.convertEntityToDto(userRepository.save(user));
-    }
-
     public void deleteUserById(Long id) {
         boolean exists = userRepository.existsById(id);
         if (!exists) {
@@ -71,20 +64,4 @@ public class UserService {
         return UserMapper.convertEntityToDto(userRepository.save(userModel));
     }
 
-    public UserDto registerUser(RegisterDto registerDto) {
-        boolean exists = userRepository.existsByUsername(registerDto.getUsername());
-        if (exists) {
-            throw new ResourceExistsException("User with username " + registerDto.getUsername() + " already exists.");
-        }
-
-        User user = new User();
-        user.setUsername(registerDto.getUsername());
-        user.setPassword(registerDto.getPassword());
-        user.setRole(registerDto.getRole());
-        user.setFirstName(registerDto.getFirstName());
-        user.setLastName(registerDto.getLastName());
-        user.setAddress(registerDto.getAddress());
-
-        return UserMapper.convertEntityToDto(userRepository.save(user));
-    }
 }

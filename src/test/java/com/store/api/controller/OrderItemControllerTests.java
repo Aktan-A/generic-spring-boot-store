@@ -2,6 +2,7 @@ package com.store.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.store.api.dto.OrderItemDto;
+import com.store.api.security.JwtService;
 import com.store.api.service.OrderItemService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,9 @@ public class OrderItemControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtService jwtService;
 
     @MockBean
     private OrderItemService orderItemService;

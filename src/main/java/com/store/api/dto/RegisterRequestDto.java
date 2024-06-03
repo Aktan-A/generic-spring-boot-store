@@ -1,15 +1,13 @@
 package com.store.api.dto;
 
-import com.store.api.enums.UserRole;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class RegisterDto {
+public class RegisterRequestDto {
     private String username;
     private String password;
-    private UserRole role;
     private String firstName;
     private String lastName;
     private String address;

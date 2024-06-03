@@ -2,6 +2,7 @@ package com.store.api.controller;
 
 import com.store.api.dto.OrderDto;
 import com.store.api.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/orders")
+@RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
-
-    @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
 
     @GetMapping(path = "/{orderId}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable("orderId") Long id) {
