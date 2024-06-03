@@ -2,8 +2,7 @@ package com.store.api.controller;
 
 import com.store.api.dto.UserDto;
 import com.store.api.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping(path = "/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("userId") Long id) {

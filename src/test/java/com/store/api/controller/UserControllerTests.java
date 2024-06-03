@@ -3,6 +3,7 @@ package com.store.api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.store.api.dto.UserDto;
 import com.store.api.enums.UserRole;
+import com.store.api.security.JwtService;
 import com.store.api.service.UserService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,9 @@ public class UserControllerTests {
     private MockMvc mockMvc;
 
     @MockBean
+    private JwtService jwtService;
+
+    @MockBean
     private UserService userService;
 
     @Autowired
@@ -53,7 +57,7 @@ public class UserControllerTests {
                 .firstName("John")
                 .lastName("Doe")
                 .address("That Avenue 28")
-                .role(UserRole.CUSTOMER)
+                .role(UserRole.USER)
                 .createdAt(LocalDateTime.now()).build();
 
     }

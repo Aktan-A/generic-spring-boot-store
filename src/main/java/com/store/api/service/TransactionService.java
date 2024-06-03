@@ -8,7 +8,7 @@ import com.store.api.model.Order;
 import com.store.api.model.Transaction;
 import com.store.api.repository.OrderRepository;
 import com.store.api.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,19 +16,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final OrderRepository orderRepository;
-
-    @Autowired
-    public TransactionService(
-            TransactionRepository transactionRepository,
-            OrderRepository orderRepository
-            ) {
-        this.transactionRepository = transactionRepository;
-        this.orderRepository = orderRepository;
-    }
 
     public TransactionDto getTransactionById(Long id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);
