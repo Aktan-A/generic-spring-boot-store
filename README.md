@@ -19,8 +19,9 @@ git clone git@github.com:Aktan-A/neobis-week3.git
 - JWT
 
 ## Environment Variables
-| Key         | Description             |
-|-------------|-------------------------|
-| DB_URL      | Database url.           |
-| DB_USERNAME | Database user username. |
-| DB_PASSWORD | Database user password. |
+| Key         | Description               |
+|-------------|---------------------------|
+| DB_URL      | Database url.             |
+| DB_USERNAME | Database user username.   |
+| DB_PASSWORD | Database user password.   |
+| SECRET_KEY  | Secret for access tokens. |
