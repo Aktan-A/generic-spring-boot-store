@@ -3,6 +3,10 @@
 ### GET `/api/v1/transactions/{transaction_id}`
 
 - Description: Get transaction details by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -19,6 +23,10 @@
 ### GET `/api/v1/transactions`
 
 - Description: Get all transactions
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -37,6 +45,10 @@
 ### POST `/api/v1/transactions`
 
 - Description: Create a transaction
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -61,6 +73,10 @@
 ### PUT `/api/v1/transactions/{transaction_id}`
 
 - Description: Update a transaction by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -85,6 +101,10 @@
 ### DELETE `/api/v1/transactions/{transaction_id}`
 
 - Description: Delete a transaction by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 

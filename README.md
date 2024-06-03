@@ -11,6 +11,13 @@ git clone git@github.com:Aktan-A/neobis-week3.git
 ./mvnw test
 ```
 
+## Technologies
+- Spring
+- Spring MVC
+- MySQL
+- Lombok
+- JWT
+
 ## Environment Variables
 | Key         | Description             |
 |-------------|-------------------------|

@@ -4,6 +4,11 @@
 
 - Description: Create an order item
 
+- Headers:
+```
+  Authorization: Bearer token
+```
+
 - Request Body:
 ```json
 {
@@ -28,6 +33,10 @@
 ### PUT `/api/v1/order_items/{order_item_id}`
 
 - Description: Update an order item by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -51,6 +60,10 @@
 ### DELETE `/api/v1/order_items/{order_item_id}`
 
 - Description: Delete an order item by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 

@@ -3,6 +3,10 @@
 ### GET `/api/v1/products/{product_id}`
 
 - Description: Get product details by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -20,6 +24,10 @@
 ### GET `/api/v1/products`
 
 - Description: Get all products
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -39,6 +47,10 @@
 ### POST `/api/v1/products`
 
 - Description: Create a product
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -66,6 +78,10 @@
 ### PUT `/api/v1/products/{product_id}`
 
 - Description: Update a transaction by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -91,6 +107,10 @@
 ### DELETE `/api/v1/products/{product_id}`
 
 - Description: Delete a product by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 

@@ -3,6 +3,10 @@
 ### GET `/api/v1/orders/{order_id}`
 
 - Description: Get order details by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -18,6 +22,10 @@
 ### GET `/api/v1/orders`
 
 - Description: Get all orders
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
@@ -35,6 +43,10 @@
 ### POST `/api/v1/orders`
 
 - Description: Create an order
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -57,6 +69,10 @@
 ### PUT `/api/v1/orders/{order_id}`
 
 - Description: Update an order by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Request Body:
 ```json
@@ -79,6 +95,10 @@
 ### DELETE `/api/v1/orders/{order_id}`
 
 - Description: Delete an order by id
+- Headers:
+```
+  Authorization: Bearer token
+```
 
 - Response 200
 
