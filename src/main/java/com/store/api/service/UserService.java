@@ -1,13 +1,11 @@
 package com.store.api.service;
 
-import com.store.api.dto.RegisterDto;
 import com.store.api.dto.UserDto;
-import com.store.api.exception.ResourceExistsException;
 import com.store.api.exception.ResourceNotFoundException;
 import com.store.api.mapper.UserMapper;
 import com.store.api.model.User;
 import com.store.api.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +13,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public UserDto getUserById(Long id) {
         Optional<User> user = userRepository.findById(id);
@@ -31,15 +25,18 @@ public class UserService {
         return UserMapper.convertEntityToDto(user.get());
     }
 
+    public UserDto getUserByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new ResourceNotFoundException("User with username " + username + " does not exist.");
+        }
+        return UserMapper.convertEntityToDto(user.get());
+    }
+
     public List<UserDto> getUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map(UserMapper::convertEntityToDto)
                 .collect(Collectors.toList());
-    }
-
-    public UserDto createUser(UserDto userDto) {
-        User user = UserMapper.convertDtoToEntity(userDto);
-        return UserMapper.convertEntityToDto(userRepository.save(user));
     }
 
     public void deleteUserById(Long id) {
@@ -63,20 +60,4 @@ public class UserService {
         return UserMapper.convertEntityToDto(userRepository.save(userModel));
     }
 
-    public UserDto registerUser(RegisterDto registerDto) {
-        boolean exists = userRepository.existsByUsername(registerDto.getUsername());
-        if (exists) {
-            throw new ResourceExistsException("User with username " + registerDto.getUsername() + " already exists.");
-        }
-
-        User user = new User();
-        user.setUsername(registerDto.getUsername());
-        user.setPassword(registerDto.getPassword());
-        user.setRole(registerDto.getRole());
-        user.setFirstName(registerDto.getFirstName());
-        user.setLastName(registerDto.getLastName());
-        user.setAddress(registerDto.getAddress());
-
-        return UserMapper.convertEntityToDto(userRepository.save(user));
-    }
 }

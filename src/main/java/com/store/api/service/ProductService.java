@@ -6,7 +6,7 @@ import com.store.api.exception.ResourceNotFoundException;
 import com.store.api.mapper.ProductMapper;
 import com.store.api.model.Product;
 import com.store.api.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +14,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
-
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     public ProductDto getProductById(Long id) {
         Optional<Product> product = productRepository.findById(id);

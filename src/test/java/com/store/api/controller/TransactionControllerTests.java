@@ -3,6 +3,7 @@ package com.store.api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.store.api.dto.TransactionDto;
 import com.store.api.enums.TransactionStatus;
+import com.store.api.security.JwtService;
 import com.store.api.service.TransactionService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,9 @@ public class TransactionControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JwtService jwtService;
 
     @MockBean
     private TransactionService transactionService;
