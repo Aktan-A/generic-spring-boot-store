@@ -11,12 +11,18 @@ git clone git@github.com:Aktan-A/neobis-week3.git
 ./mvnw test
 ```
 
+## Running Docker-Compose
+```bash
+docker compose -f docker-compose.dev.yml up -d --build
+```
+
 ## Technologies
 - Spring
 - Spring MVC
 - MySQL
 - Lombok
 - JWT
+- Docker
 
 ## Environment Variables
 | Key         | Description               |
