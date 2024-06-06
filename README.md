@@ -1,4 +1,4 @@
-# neobis-week3
+# Generic Spring Boot Store
 
 ## Project Setup
 ```bash
@@ -18,6 +18,7 @@ docker compose -f docker-compose.dev.yml up -d --build
 
 ## Technologies
 - Spring
+- Spring Boot
 - Spring MVC
 - MySQL
 - Lombok
