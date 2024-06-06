@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    expose:
+      - "3306"
+    env_file:
+      - .env
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    image: registry.digitalocean.com/neobis-registry/store-api:latest
+    container_name: backend
+    platform: linux/amd64
+    depends_on:
+      - db
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+
+volumes:
+  mysql-data:

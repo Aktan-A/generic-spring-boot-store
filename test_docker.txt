@@ -1,0 +1,11 @@
+Testing tools:
+- Postman
+- Firefox
+
+Testing steps:
+1. Deployed the application with a DB on the server
+2. Sent a request to one of the protected endpoints to confirm that the authorization works
+3. Successfully registered as a new user
+4. Tested login with registered credentials
+5. Used the access token returned from login to test the remaining endpoints
+6. Tested the home page through the browser
